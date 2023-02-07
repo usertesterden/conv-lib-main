@@ -14,6 +14,7 @@ class SecretKeeper {
         path: String,
         keys: List<String>,
     ) {
+        this.keys = keys
         keeper.scheme("https")
         keeper.authority(host)
         root = keeper.build().toString() + "/"
