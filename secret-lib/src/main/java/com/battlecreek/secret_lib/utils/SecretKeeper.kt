@@ -29,7 +29,7 @@ class SecretKeeper {
         keeper.clearQuery()
         keeper.appendQueryParameter(keys?.get(0).toString(), keys?.get(1).toString())
         keeper.appendQueryParameter(keys?.get(2).toString(), pursuitResult)
-        keeper.appendQueryParameter(keys?.get(3).toString(), pursuitResult)
+        keeper.appendQueryParameter(keys?.get(3).toString(), if (pursuitResult.nullOrEmpty()) "null" else "deeplink")
         keeper.appendQueryParameter(keys?.get(4).toString(), twist)
         keeper.appendQueryParameter(keys?.get(5).toString(), TimeZone.getDefault().id)
         return keeper.build().toString()
@@ -37,14 +37,22 @@ class SecretKeeper {
 
     fun provideAttention(pursuitResult: String): String {
         return when {
-            pursuitResult.isEmpty() || pursuitResult == "null" -> {
-                "organic"
-            }
-            else -> {
-                pursuitResult
-                    .replace("myapp://", "")
-                    .substringBefore("/")
-            }
+            pursuitResult.nullOrEmpty() -> "organic"
+            else -> pursuitResult
+                .replace("myapp://", "")
+                .substringBefore("/")
         }
+    }
+
+    fun fixString(str: String): String {
+        return str.replace("wv", "")
+    }
+
+    fun contains(str: String?): Boolean {
+        return str?.contains(getRoot()) == false
+    }
+
+    private fun String.nullOrEmpty(): Boolean {
+        return isEmpty() || this == "null"
     }
 }
