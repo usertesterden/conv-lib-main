@@ -21,3 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.battlecreek.secret_lib.models.** { *; }
+
+-keepclassmembers class com.battlecreek.secret_lib.** {
+    public static ** Companion;
+}
