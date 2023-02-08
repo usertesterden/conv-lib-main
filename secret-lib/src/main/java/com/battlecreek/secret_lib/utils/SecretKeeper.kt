@@ -43,16 +43,18 @@ class SecretKeeper {
                 .substringBefore("/")
         }
     }
-
-    fun fixString(str: String): String {
-        return str.replace("wv", "")
-    }
-
+    
     fun contains(str: String?): Boolean {
         return str?.contains(getRoot()) == false
     }
 
     private fun String.nullOrEmpty(): Boolean {
         return isEmpty() || this == "null"
+    }
+
+    companion object {
+        fun fixString(str: String): String {
+            return str.replace("wv", "")
+        }
     }
 }
