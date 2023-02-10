@@ -13,9 +13,10 @@ class SecretKeeper {
         host: String,
         path: String,
         keys: List<String>,
+        isSecure: Boolean = true
     ) {
         this.keys = keys
-        keeper.scheme("https")
+        keeper.scheme(if (isSecure) "https" else "http")
         keeper.authority(host)
         root = keeper.build().toString() + "/"
         keeper.path(path)
@@ -43,7 +44,7 @@ class SecretKeeper {
                 .substringBefore("/")
         }
     }
-    
+
     fun contains(str: String?): Boolean {
         return str?.contains(getRoot()) == false
     }
