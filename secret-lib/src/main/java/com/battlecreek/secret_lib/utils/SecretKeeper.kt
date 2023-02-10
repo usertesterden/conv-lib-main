@@ -28,11 +28,11 @@ class SecretKeeper {
 
     fun getSecret(pursuitResult: String, twist: String): String {
         keeper.clearQuery()
-        keeper.appendQueryParameter(keys?.get(0).toString(), keys?.get(1).toString())
-        keeper.appendQueryParameter(keys?.get(2).toString(), pursuitResult)
-        keeper.appendQueryParameter(keys?.get(3).toString(), if (pursuitResult.nullOrEmpty()) "null" else "deeplink")
-        keeper.appendQueryParameter(keys?.get(4).toString(), twist)
-        keeper.appendQueryParameter(keys?.get(5).toString(), TimeZone.getDefault().id)
+        keeper.appendQueryParameter(keys?.getOrNull(0).toString(), keys?.getOrNull(1).toString())
+        keeper.appendQueryParameter(keys?.getOrNull(2).toString(), pursuitResult)
+        keeper.appendQueryParameter(keys?.getOrNull(3).toString(), if (pursuitResult.nullOrEmpty()) "null" else "deeplink")
+        keeper.appendQueryParameter(keys?.getOrNull(4).toString(), twist)
+        keeper.appendQueryParameter(keys?.getOrNull(5).toString(), TimeZone.getDefault().id)
         return keeper.build().toString()
     }
 
