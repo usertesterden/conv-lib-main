@@ -1,4 +1,4 @@
-package com.battlecreek.secret_lib
+package com.fmb.conversion
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

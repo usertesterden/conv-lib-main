@@ -1,4 +1,4 @@
-package com.battlecreek.secretofsuperjokerlib
+package com.fmb.conversion
 
 import org.junit.Test
 

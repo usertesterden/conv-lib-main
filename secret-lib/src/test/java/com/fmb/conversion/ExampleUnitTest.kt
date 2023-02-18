@@ -1,4 +1,4 @@
-package com.battlecreek.secret_lib
+package com.fmb.conversion
 
 import org.junit.Test
 
