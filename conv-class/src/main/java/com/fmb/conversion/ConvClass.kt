@@ -39,14 +39,18 @@ object ConvClass {
 
                     }
                     InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
-                        if (dataString.isNullOrBlank()){
+                        if (dataString == null){
                             it.resume(null)
                         } else {
                             it.resume(dataString)
                         }
                     }
                     InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE -> {
-                        it.resume(null)
+                        if (dataString == null){
+                            it.resume(null)
+                        } else {
+                            it.resume(dataString)
+                        }
 
                     }
                 }
