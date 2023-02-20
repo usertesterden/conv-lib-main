@@ -32,6 +32,8 @@ object ConvClass {
                                     key = keyMain
                                 )
                             )
+                        } else if (dataString != null) {
+                            it.resume(dataString)
                         } else {
                             it.resume(null)
                         }
