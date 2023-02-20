@@ -23,13 +23,20 @@ object ConvClass {
             override fun onInstallReferrerSetupFinished(responseCode: Int) {
                 when (responseCode) {
                     InstallReferrerClient.InstallReferrerResponse.OK -> {
-                        it.resume(
-                            decodeFacebookArray(
-                                encryptedString = getEncryptedData(referrerClient.installReferrer.installReferrer),
-                                nonce = getEncryptedNonce(referrerClient.installReferrer.installReferrer),
-                                key = keyMain
+
+                        if (referrerClient.installReferrer.installReferrer.contains("fb4a") || referrerClient.installReferrer.installReferrer.contains("facebook")){
+                            it.resume(
+                                decodeFacebookArray(
+                                    encryptedString = getEncryptedData(referrerClient.installReferrer.installReferrer),
+                                    nonce = getEncryptedNonce(referrerClient.installReferrer.installReferrer),
+                                    key = keyMain
+                                )
                             )
-                        )
+                        } else {
+                            it.resume(null)
+                        }
+
+
                     }
                     InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
                         if (dataString.isNullOrBlank()){
